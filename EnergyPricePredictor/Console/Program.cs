@@ -1,3 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Microsoft.Extensions.Configuration;
+using PredictorModel.Training;
 
-Console.WriteLine("Hello, World!");
+var config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .AddUserSecrets<Program>()
+    .Build();
+
+
+TrainingHandler.Handle(config);
